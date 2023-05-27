@@ -16,14 +16,13 @@ dependencies = ['pandas',
                 'statsmodels', 
                 'keras', 
                 'neuralprophet', 
-                'scikitlearn', 
+                'scikit-learn', 
                 'tqdm', 
-                'tabulate', 
-                'inspect']
+                'tabulate']
 
 setup(
   name='time_series_binder',
-  version='0.0.1',
+  version='1.0.2',
   description=desc,
   long_description=open('README.txt').read() + '\n\n' + open('CHANGELOG.txt').read(),
   url='',  
