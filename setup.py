@@ -22,10 +22,11 @@ dependencies = ['pandas',
 
 setup(
   name='time_series_binder',
-  version='1.0.2',
+  version='1.0.3',
   description=desc,
   long_description=open('README.txt').read() + '\n\n' + open('CHANGELOG.txt').read(),
-  url='',  
+  long_description_content_type='text/markdown',
+  url='https://github.com/JhunBrian/time_series_binder',  
   author='Jhun Brian Andam',
   author_email='brianandam123@gmail.com',
   license='MIT', 

@@ -10,6 +10,8 @@ Time Series Binder is a Python library for time series analysis and forecasting.
 - Integration with the NeuralProphet library for additional forecasting capabilities.
 - Visualization tools for creating insightful plots and visual representations of time series data.
 - Integration with scikit-learn for additional machine learning functionality.
-- Convenient progress tracking with the tqdm library.
-- Tabulate module for nicely formatted tables.
-- Inspection utilities for exploring time series data and models.
+
+
+## Import
+
+`from ts_binder import tariner`
