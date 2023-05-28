@@ -1,5 +1,9 @@
 from setuptools import setup, find_packages
  
+# python setup.py sdist bdist_wheel
+# twine check dist/*
+# twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+
 classifiers = [
   'Development Status :: 1 - Planning',
   'Intended Audience :: Education',
