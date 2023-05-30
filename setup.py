@@ -26,9 +26,9 @@ dependencies = ['pandas',
 
 setup(
   name='time_series_binder',
-  version='1.0.3',
+  version='1.0.4',
   description=desc,
-  long_description=open('README.txt').read() + '\n\n' + open('CHANGELOG.txt').read(),
+  long_description=open('README.md').read() + '\n\n' + open('CHANGELOG.txt').read(),
   long_description_content_type='text/markdown',
   url='https://github.com/JhunBrian/time_series_binder',  
   author='Jhun Brian Andam',

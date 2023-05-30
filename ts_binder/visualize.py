@@ -4,25 +4,6 @@ import matplotlib.pyplot as plt
 from statsmodels.tsa.stattools import adfuller
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 
-class InverseTransform:
-    
-    def __init__(self, data):
-        self.data = data
-    
-    def differenced(self, last_obs):
-        inverse_data = np.exp(self.data.cumsum()) * last_obs
-        inverse_series = pd.Series(inverse_data, 
-                                   name=self.data.name, 
-                                   index=self.data.index)
-        return inverse_series
-    
-    def scaled(self, scaler_):
-        inverse_data = scaler_.inverse_transform(self.data.values.reshape(-1,1))
-        inverse_series = pd.Series(inverse_data.reshape(-1), 
-                                   name=self.data.name, 
-                                   index=self.data.index)
-        return inverse_series
-    
 def analyze_data(data, show_graph=True, **kwargs):
         """
         Genrates correlogram plots for a given time series data.
@@ -88,26 +69,3 @@ def analyze_data(data, show_graph=True, **kwargs):
         else:
             out = 'NONE STATIONARY'
         print(out)
-        
-def evaluate_forecast(y_test, y_pred):
-    """
-    Evaluate a time series forecast using common metrics.
-    
-    Parameters:
-    y_test (numpy.ndarray): Array of true values with shape (n_samples,).
-    y_pred (numpy.ndarray): Array of predicted values with shape (n_samples,).
-    
-    Returns:
-    dict: Dictionary containing metrics and their values.
-    """
-    # Calculate metrics
-    mse = np.mean((y_test - y_pred)**2)
-    rmse = np.sqrt(mse)
-    mape = np.mean(np.abs((y_test - y_pred) / y_test)) * 100
-    mae = np.mean(np.abs(y_test - y_pred))
-    mase = np.mean(np.abs(y_test - y_pred)) / np.mean(np.abs(np.diff(y_test)))
-    
-    # Store metrics in dictionary
-    metrics = {'MSE': mse, 'RMSE': rmse, 'MAPE': mape, 'MAE': mae, 'MASE': mase}
-    
-    return metrics

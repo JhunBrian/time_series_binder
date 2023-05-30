@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+
 from statsmodels.tsa.statespace.exponential_smoothing import ExponentialSmoothing
 from statsmodels.nonparametric.smoothers_lowess import lowess
 from statsmodels.tsa.stattools import adfuller
@@ -111,4 +112,23 @@ class DataPreprocessing:
         scaled_data = scaler_.fit_transform(data.values.reshape(-1,1))
         scaled_data = pd.Series(scaled_data.reshape(-1), name=data.name, index=data.index)
 
-        return scaler_, scaled_data
+        return scaled_data, scaler_
+    
+class InverseTransform:
+    
+    def __init__(self, data):
+        self.data = data
+    
+    def differenced(self, last_obs):
+        inverse_data = np.exp(self.data.cumsum()) * last_obs
+        inverse_series = pd.Series(inverse_data, 
+                                   name=self.data.name, 
+                                   index=self.data.index)
+        return inverse_series
+    
+    def scaled(self, scaler_):
+        inverse_data = scaler_.inverse_transform(self.data.values.reshape(-1,1))
+        inverse_series = pd.Series(inverse_data.reshape(-1), 
+                                   name=self.data.name, 
+                                   index=self.data.index)
+        return inverse_series
